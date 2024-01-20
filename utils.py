@@ -73,7 +73,7 @@ def validateConfig():
         validate(instance=config, schema=config_schema)
         return True
     except TypeError as err:
-        print(f"[bold red]Error:[/bold red] Config file is not in json")
+        print(f"[bold red]Error:[/bold red] Config is not a JSON file")
         return False
     except json.decoder.JSONDecodeError as err:
         print(f"[bold red]Error:[/bold red] Config file contains incorrect JSON format")
