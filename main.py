@@ -46,7 +46,14 @@ def activate(id: str):
 
 @app.command()
 def current():
-    pass
+    id = utl.config["current"]
+    try:
+        details = utl.config["accounts"][id]
+        account_name = details["account_name"]  
+    except KeyError as err:
+        print(f"[bold red]Error:[/bold red] Could not fetch details of account {id}")
+    
+    print(f"Current: [bold green]{account_name} ({id})[/bold green]")
 
 
 
