@@ -30,7 +30,7 @@ def activate(account_id: str):
         except:
             print("[bold red]Error:[/bold red] Cannot extract account details. Make sure config file matches latest schema")
 
-        # Update github credentials
+        # Update git credentials
         utl.update_credential(username, PAT)
 
         # Update git config file
