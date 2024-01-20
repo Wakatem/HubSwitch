@@ -45,7 +45,7 @@ def activate(id: str):
 
 
 @app.command()
-def current(detailed: Annotated[bool, typer.Option(help="Display detailed information of activated account")] = False):
+def current(verbose: Annotated[bool, typer.Option("--verbose", "-v", help="Display detailed information of activated account")] = False):
     id = utl.config["current"]
 
     # Fetch details of current account
@@ -56,7 +56,7 @@ def current(detailed: Annotated[bool, typer.Option(help="Display detailed inform
         print(f"[bold red]Error:[/bold red] Could not fetch details of account {id}")
     
     # Display information
-    if detailed:
+    if verbose:
         print(f"Current: [bold green]{account_name} ({id})[/bold green]")
         print_json(data=details)
         pass
