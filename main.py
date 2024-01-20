@@ -1,6 +1,6 @@
 import typer
 from rich import print
-from utils import *
+import utils as utl
 
 
 app = typer.Typer()
@@ -8,15 +8,10 @@ app = typer.Typer()
 # default command for account activation
 @app.callback(invoke_without_command=True)
 def activate(account_id: str):
-    global config
-    configExists = findConfig()
-    configValid = None
-    
-    if configExists:
-        configValid = validateConfig
-    
-    if configValid:
-        print(config)
+    utl.findConfig()
+    utl.validateConfig()
+    print(utl.config)
+
 
 
 
