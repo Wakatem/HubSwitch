@@ -8,6 +8,7 @@ from rich import print
 
 path_variable = "HubSwitch"     # Environment Variable
 config_version = 1.0
+config_path = ""
 config = None                   # Config content
 
 config_schema = {
@@ -22,6 +23,7 @@ config_schema = {
 
 def findConfig():
     global config
+    global config_path
 
     # Retrieve HubSwitch variable value from system environment
     path = os.environ.get(path_variable)
@@ -37,6 +39,8 @@ def findConfig():
             config_file = open(path, 'r')
             config = config_file.read()
             config_file.close()
+
+            config_path = path
             return True
         except:
             print("[bold red]Error:[/bold red] Cannot read config file")
@@ -69,12 +73,19 @@ def validateConfig():
         return False
 
 
+def saveConfig():
+    global config
+    global config_path
+
+    # Save config json
+    with open(config_path, 'w', encoding='utf-8') as config_file:
+        json.dump(config, config_file)
+
 
 # Function to run shell commands and suppress output
 def run_command(command):
     result = subprocess.run(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return result.returncode
-
 
 
 def update_credential(username, PAT):

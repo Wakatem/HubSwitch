@@ -10,10 +10,6 @@ app = typer.Typer()
 @app.callback(invoke_without_command=True)
 def activate(account_id: str):
     
-    # Setup config file
-    utl.findConfig()
-    utl.validateConfig()
-    
     # Find selected account
     accountFound = True
     try:
@@ -37,6 +33,10 @@ def activate(account_id: str):
         # Update git config file
         utl.run_command(f'git config --global user.name "{username}"')
         utl.run_command(f'git config --global user.email "{email}"')
+
+        # Update current account property
+        utl.config["current"] = account_id
+        utl.saveConfig()
         
         print(f"[bold green]{account_name}[/bold green] account activated.")
 
@@ -51,4 +51,7 @@ def current():
 
 
 if __name__ == "__main__":
+    # Setup config file
+    utl.findConfig()
+    utl.validateConfig()
     app()
