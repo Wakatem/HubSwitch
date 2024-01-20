@@ -5,7 +5,8 @@ import utils as utl
 
 app = typer.Typer()
 
-# default command for account activation
+# default command for HubSwitch
+@app.command()
 @app.callback(invoke_without_command=True)
 def activate(account_id: str):
     
@@ -43,9 +44,9 @@ def activate(account_id: str):
 
 
 
-# @app.command()
-# def menu():
-#     pass
+@app.command()
+def current():
+    pass
 
 
 
