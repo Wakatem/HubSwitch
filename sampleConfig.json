@@ -7,5 +7,6 @@
             "email":"<gitub email here>",
             "PAT":"<Your PersonalAccessToken here>"
         }
-    }
+    },
+    "current":"<activated account ID>"
 }
