@@ -8,9 +8,37 @@ app = typer.Typer()
 # default command for account activation
 @app.callback(invoke_without_command=True)
 def activate(account_id: str):
+    
+    # Setup config file
     utl.findConfig()
     utl.validateConfig()
-    print(utl.config)
+    
+    # Find selected account
+    accountFound = True
+    try:
+        details = utl.config["accounts"][account_id]
+    except KeyError as err:
+        print(f"[bold red]Error:[/bold red] Account {account_id} does not exist")
+        accountFound = False
+
+    if accountFound:
+        try:
+            account_name = details["account_name"]  
+            username = details["username"]
+            email = details["email"]  
+            PAT = details["PAT"]
+        except:
+            print("[bold red]Error:[/bold red] Cannot extract account details. Make sure config file matches latest schema")
+
+        # Update github credentials
+        utl.update_credential(username, PAT)
+
+        # Update git config file
+        utl.run_command(f'git config --global user.name "{username}"')
+        utl.run_command(f'git config --global user.email "{email}"')
+        
+        print(f"[bold green]{account_name}[/bold green] account activated.")
+
 
 
 

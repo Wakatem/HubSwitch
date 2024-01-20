@@ -1,4 +1,6 @@
 import os
+import subprocess
+import win32cred
 import json
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
@@ -65,3 +67,23 @@ def validateConfig():
         if err.validator == 'required':
             print(f"Missing properties: {err.validator_value}")
         return False
+
+
+
+# Function to run shell commands and suppress output
+def run_command(command):
+    result = subprocess.run(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    return result.returncode
+
+
+
+def update_credential(username, PAT):
+    credential = dict(
+        Type=win32cred.CRED_TYPE_GENERIC,
+        TargetName="git:https://github.com",
+        UserName=username,
+        CredentialBlob=PAT,
+        Persist=win32cred.CRED_PERSIST_LOCAL_MACHINE
+    )
+    
+    win32cred.CredWrite(credential, 0)
