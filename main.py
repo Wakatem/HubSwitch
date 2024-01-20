@@ -71,6 +71,24 @@ def current(verbose: Annotated[bool, typer.Option("--verbose", "-v", help="Displ
 
 
 @app.command()
+def accounts():
+    f"""
+    List all accounts stored in the config file
+    """
+    
+    current_id= utl.config["current"]
+    pos = 1
+    for id, details in utl.config["accounts"].items():
+        account_name = details["account_name"]
+        
+        if id == current_id: 
+            print(f"{pos}. [bold green]{account_name}[/bold green]")
+        else:
+            print(f"{pos}. {account_name}")
+        
+        pos+=1
+
+@app.command()
 def schema():
     f"""
     Show schema of config file (v{utl.config_version})
