@@ -20,6 +20,18 @@ config_schema = {
     "required": ["version", "accounts"]
 }
 
+config_schema_example = """{
+    "version":<version number>,
+    "accounts":{
+        "<Any id for the account, e.g work1>":{
+            "account_name":"<Any descriptive name, e.g Work>",
+            "username":"<github username here>",
+            "email":"<gitub email here>",
+            "PAT":"<Your PersonalAccessToken here>"
+        }
+    },
+    "current":"<activated account ID>"
+}"""
 
 def findConfig():
     global config

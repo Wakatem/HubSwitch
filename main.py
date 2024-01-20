@@ -70,6 +70,14 @@ def current(verbose: Annotated[bool, typer.Option("--verbose", "-v", help="Displ
 
 
 
+@app.command()
+def schema():
+    f"""
+    Show schema of config file (v{utl.config_version})
+    """
+    print(utl.config_schema_example)
+
+
 if __name__ == "__main__":
     # Setup config file
     utl.findConfig()
