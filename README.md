@@ -1,7 +1,10 @@
-<center><img src="logo.png" alt="drawing" width="200"/></center>
-<center><h1> HubSwitch </h1></center>  
+<p align="center">
+    <img src="logo.png" alt="drawing" width="200"/>
+</p>
 
-<center>Command-line tool for seamlessly managing and switching between multiple GitHub accounts on a single machine, ideal for developers with both personal and professional profiles.</center>
+<h1 align="center"> HubSwitch </h1>
+
+<p align="center">Command-line tool for seamlessly managing and switching between multiple GitHub accounts on a single machine, ideal for developers with both personal and professional profiles.</p>
 
 ## How to Use
 
