@@ -1,5 +1,5 @@
 import typer
-from rich import print
+from rich import print, print_json
 import utils as utl
 from typing_extensions import Annotated
 
@@ -45,15 +45,23 @@ def activate(id: str):
 
 
 @app.command()
-def current():
+def current(detailed: Annotated[bool, typer.Option(help="Display detailed information of activated account")] = False):
     id = utl.config["current"]
+
+    # Fetch details of current account
     try:
         details = utl.config["accounts"][id]
         account_name = details["account_name"]  
     except KeyError as err:
         print(f"[bold red]Error:[/bold red] Could not fetch details of account {id}")
     
-    print(f"Current: [bold green]{account_name} ({id})[/bold green]")
+    # Display information
+    if detailed:
+        print(f"Current: [bold green]{account_name} ({id})[/bold green]")
+        print_json(data=details)
+        pass
+    else:
+        print(f"Current: [bold green]{account_name} ({id})[/bold green]")
 
 
 
