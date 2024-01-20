@@ -64,14 +64,13 @@ def current(verbose: Annotated[bool, typer.Option("--verbose", "-v", help="Displ
     if verbose:
         print(f"Current: [bold green]{account_name} ({id})[/bold green]")
         print_json(data=details)
-        pass
     else:
         print(f"Current: [bold green]{account_name} ({id})[/bold green]")
 
 
 
 @app.command()
-def accounts():
+def accounts(verbose: Annotated[bool, typer.Option("--verbose", "-v", help="Display detailed information of all accounts")] = False):
     f"""
     List all accounts stored in the config file
     """
@@ -81,10 +80,18 @@ def accounts():
     for id, details in utl.config["accounts"].items():
         account_name = details["account_name"]
         
-        if id == current_id: 
-            print(f"{pos}. [bold green]{account_name}[/bold green]")
+        if verbose:
+            if id == current_id: 
+                print(f"{pos}. [bold green]{account_name} ({id})[/bold green]")
+            else:
+                print(f"{pos}. {account_name} ({id})")
+            print_json(data=details)
         else:
-            print(f"{pos}. {account_name}")
+            if id == current_id: 
+                print(f"{pos}. [bold green]{account_name}[/bold green]")
+            else:
+                print(f"{pos}. {account_name}")
+
         
         pos+=1
 
