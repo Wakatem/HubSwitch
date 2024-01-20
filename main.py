@@ -9,7 +9,9 @@ app = typer.Typer()
 # default command for HubSwitch
 @app.command()
 def activate(id: str):
-    
+    """
+    Activate github account based on id
+    """
     # Find selected account
     accountFound = True
     try:
@@ -46,6 +48,9 @@ def activate(id: str):
 
 @app.command()
 def current(verbose: Annotated[bool, typer.Option("--verbose", "-v", help="Display detailed information of activated account")] = False):
+    """
+    Display activated account
+    """
     id = utl.config["current"]
 
     # Fetch details of current account
