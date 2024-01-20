@@ -1,21 +1,21 @@
 import typer
 from rich import print
 import utils as utl
+from typing_extensions import Annotated
 
 
 app = typer.Typer()
 
 # default command for HubSwitch
 @app.command()
-@app.callback(invoke_without_command=True)
-def activate(account_id: str):
+def activate(id: str):
     
     # Find selected account
     accountFound = True
     try:
-        details = utl.config["accounts"][account_id]
+        details = utl.config["accounts"][id]
     except KeyError as err:
-        print(f"[bold red]Error:[/bold red] Account {account_id} does not exist")
+        print(f"[bold red]Error:[/bold red] Account {id} does not exist")
         accountFound = False
 
     if accountFound:
@@ -35,7 +35,7 @@ def activate(account_id: str):
         utl.run_command(f'git config --global user.email "{email}"')
 
         # Update current account property
-        utl.config["current"] = account_id
+        utl.config["current"] = id
         utl.saveConfig()
         
         print(f"[bold green]{account_name}[/bold green] account activated.")
