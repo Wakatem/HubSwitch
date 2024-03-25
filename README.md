@@ -8,7 +8,7 @@
 
 ## How to Use
 
-Before using HubSwitch, ensure that your GitHub accounts' details are properly set up in the configuration file (`sampleConfig.json`). The configuration should include the GitHub username, email, and Personal Access Token (PAT) for each account. <br/>
+Before using HubSwitch, ensure that your GitHub accounts' details are properly set up in the configuration file (`sampleConfig.json`). The configuration should include the GitHub username, email, and Personal Access Token (PAT) for each account. Ensure to store the path of the JSON file as an environment variable exactly named **HubSwitch**. <br/>
 ***Note: store the config in a secure place as it contains sensitive information.***
 
 ### Setup
