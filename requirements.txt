@@ -1,0 +1,4 @@
+typer
+rich
+pywin32
+jsonschema
