@@ -30,12 +30,17 @@ Example `sampleConfig.json`:
         // ... Add other accounts as needed
     },
     "current": "work1"  // Set the default activated account ID
-}  
+}
+
 ```
+3. To run the `hubswitch` command through terminal, add the path of the repo folder to **PATH** environment variable (either *User* or *System*) 
 
 ### Basic Commands
 #### Activate an Account
 To activate an account, use the command activate followed by the account ID specified in your config file.
+```bat
+hubswitch activate work1
+```
 ```bat
 python main.py activate work1
 ```
@@ -43,17 +48,26 @@ python main.py activate work1
 #### View Current Account
 To view the currently activated account, use the command current
 ```bat
+hubswitch current
+```
+```bat
 python main.py current
 ```
 
 #### List All Accounts
 To list all accounts available in your configuration file, use the command accounts.
 ```bat
+hubswitch accounts
+```
+```bat
 python main.py accounts
 ```
 
 #### View Config Schema
 To view the expected schema of your configuration file, use the command schema.
+```bat
+hubswitch schema
+```
 ```bat
 python main.py schema
 ```
